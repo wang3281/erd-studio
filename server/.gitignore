@@ -1,0 +1,11 @@
+node_modules/
+dist/
+
+# SQLite 런타임 파일 (운영은 DB_PATH 로 외부 경로 사용)
+*.db
+*.db-wal
+*.db-shm
+
+# 로컬 환경변수
+.env
+.env.local

@@ -1,0 +1,31 @@
+{
+  "name": "erd-server",
+  "private": true,
+  "version": "0.1.0-alpha.0",
+  "description": "Optional Fastify and SQLite collaboration server for ERD Studio",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "start": "node --enable-source-maps dist/index.js",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node scripts/run-tests.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@fastify/rate-limit": "^11.2.0",
+    "@openai/codex-sdk": "0.144.1",
+    "better-sqlite3": "^11.7.0",
+    "dotenv": "^16.4.5",
+    "fastify": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^24.10.1",
+    "tsx": "^4.19.2",
+    "typescript": "~5.9.3"
+  }
+}

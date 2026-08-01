@@ -1,0 +1,153 @@
+:root {
+  color-scheme: light;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+
+  --line-height-tight: 1.2;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.5;
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --space-0: 0px;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 8px;
+  --space-4: 12px;
+  --space-5: 16px;
+  --space-6: 20px;
+  --space-7: 24px;
+  --space-8: 32px;
+  --space-9: 40px;
+  --space-10: 48px;
+  --space-11: 64px;
+
+  --radius-0: 0px;
+  --radius-1: 4px;
+  --radius-2: 8px;
+  --radius-3: 12px;
+  --radius-4: 16px;
+  --radius-round: 9999px;
+
+  --border-width-hairline: 1px;
+  --border-width-thick: 2px;
+
+  --shadow-0: none;
+  --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.08);
+  --shadow-2: 0 4px 12px rgba(15, 23, 42, 0.1);
+  --shadow-3: 0 12px 28px rgba(15, 23, 42, 0.14);
+
+  --duration-fast: 120ms;
+  --duration-normal: 180ms;
+  --duration-slow: 240ms;
+  --easing-standard: cubic-bezier(0.2, 0, 0, 1);
+
+  --z-base: 0;
+  --z-sticky: 10;
+  --z-dropdown: 20;
+  --z-modal: 30;
+  --z-toast: 40;
+
+  --color-bg-canvas: #ffffff;
+  --color-bg-surface: #f8fafc;
+  --color-bg-surface-raised: #ffffff;
+  --color-bg-hover: #f1f5f9;
+  --color-bg-selected: #eff6ff;
+  --color-bg-input: #ffffff;
+  --color-bg-inverse: #1f2937;
+  --color-bg-danger-soft: #fef2f2;
+  --color-bg-warning-soft: #fef3c7;
+  --color-bg-success-soft: #dcfce7;
+  --color-bg-info-soft: #e0f2fe;
+  --color-overlay: rgba(15, 23, 42, 0.4);
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-text-soft: #94a3b8;
+  --color-text-inverse: #ffffff;
+  --color-text-link: #2563eb;
+  --color-text-warning: #92400e;
+
+  --color-border-subtle: #e2e8f0;
+  --color-border-default: #cbd5e1;
+  --color-border-strong: #94a3b8;
+  --color-border-focus: #2563eb;
+  --color-border-danger: #dc2626;
+  --color-border-danger-soft: #fca5a5;
+  --color-border-warning: #d97706;
+  --color-border-success: #16a34a;
+  --color-border-info: #0284c7;
+
+  --color-accent-primary: #2563eb;
+  --color-accent-primary-hover: #1d4ed8;
+  --color-accent-primary-active: #1e40af;
+
+  --color-status-success: #16a34a;
+  --color-status-warning: #d97706;
+  --color-status-danger: #dc2626;
+  --color-status-info: #0284c7;
+
+  --focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.18);
+  --focus-ring-inset: 0 0 0 1px var(--color-bg-input), 0 0 0 4px rgba(37, 99, 235, 0.18);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg-canvas: #0f172a;
+  --color-bg-surface: #1e293b;
+  --color-bg-surface-raised: #1e293b;
+  --color-bg-hover: #334155;
+  --color-bg-selected: rgba(37, 99, 235, 0.16);
+  --color-bg-input: #0f172a;
+  --color-bg-inverse: #f1f5f9;
+  --color-bg-danger-soft: rgba(239, 68, 68, 0.12);
+  --color-bg-warning-soft: rgba(217, 119, 6, 0.16);
+  --color-bg-success-soft: rgba(22, 163, 74, 0.16);
+  --color-bg-info-soft: rgba(2, 132, 199, 0.16);
+  --color-overlay: rgba(0, 0, 0, 0.6);
+
+  --color-text-primary: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-muted: #94a3b8;
+  --color-text-soft: #64748b;
+  --color-text-inverse: #0f172a;
+  --color-text-link: #60a5fa;
+  --color-text-warning: #fbbf24;
+
+  --color-border-subtle: #334155;
+  --color-border-default: #475569;
+  --color-border-strong: #64748b;
+  --color-border-focus: #60a5fa;
+  --color-border-danger: #ef4444;
+  --color-border-danger-soft: #7f1d1d;
+  --color-border-warning: #f59e0b;
+  --color-border-success: #22c55e;
+  --color-border-info: #38bdf8;
+
+  --color-accent-primary: #2563eb;
+  --color-accent-primary-hover: #3b82f6;
+  --color-accent-primary-active: #1d4ed8;
+
+  --color-status-success: #22c55e;
+  --color-status-warning: #f59e0b;
+  --color-status-danger: #ef4444;
+  --color-status-info: #38bdf8;
+
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-2: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-3: 0 12px 28px rgba(0, 0, 0, 0.4);
+
+  --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.24);
+  --focus-ring-inset: 0 0 0 1px var(--color-bg-input), 0 0 0 4px rgba(96, 165, 250, 0.24);
+}

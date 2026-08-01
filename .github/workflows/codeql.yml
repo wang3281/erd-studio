@@ -1,0 +1,33 @@
+name: CodeQL
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 3 * * 2"
+
+permissions:
+  contents: read
+  security-events: write
+  packages: read
+
+jobs:
+  analyze:
+    name: JavaScript and TypeScript
+    runs-on: ubuntu-latest
+    steps:
+      - name: Explain private repository preflight
+        if: ${{ github.event.repository.private }}
+        run: |
+          echo "CodeQL upload requires GitHub Advanced Security while this repository is private."
+          echo "The analysis steps run automatically after the repository becomes public."
+      - uses: actions/checkout@v7
+        if: ${{ !github.event.repository.private }}
+      - uses: github/codeql-action/init@v4
+        if: ${{ !github.event.repository.private }}
+        with:
+          languages: javascript-typescript
+      - uses: github/codeql-action/analyze@v4
+        if: ${{ !github.event.repository.private }}

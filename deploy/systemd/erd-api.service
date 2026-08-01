@@ -1,0 +1,32 @@
+[Unit]
+Description=ERD Tool backend (Fastify + SQLite)
+Documentation=file:///opt/erd-server/README.md
+After=network.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=erd
+Group=erd
+WorkingDirectory=/opt/erd-server
+
+# 모든 비밀(EDIT_PASSWORD, LITELLM_API_KEY)은 이 파일에만 둔다. 0600 권한.
+EnvironmentFile=/etc/erd/erd-api.env
+Environment=NODE_ENV=production
+
+ExecStart=/usr/bin/node --enable-source-maps dist/index.js
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+# 권장 보안 옵션 (필수는 아님)
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/erd
+
+[Install]
+WantedBy=multi-user.target

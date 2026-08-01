@@ -1,0 +1,54 @@
+# Dependencies and generated output
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+build/
+coverage/
+.vite/
+
+# Test and browser artifacts
+artifacts/
+client/test-results/
+client/playwright-report/
+.playwright-mcp/
+test-screenshot.png
+
+# Secrets and local configuration
+.env
+.env.*
+!**/.env.example
+!**/.env.template
+!**/.env.sample
+secrets/
+credentials/
+config/credentials.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.tfvars
+.npmrc
+.pypirc
+
+# Runtime data and logs
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+*.log
+logs/
+
+# Local automation, editor, and OS state
+.sisyphus/
+.claude/
+.codex/
+.opencode/
+.agents/
+.worktrees/
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
