@@ -11,7 +11,9 @@ The current development repository may contain private history and local-only to
 5. Extract the verified archive into a fresh directory, initialize a new Git repository, and create one initial release commit.
 6. Enable CI, Dependabot, and secret scanning. Resolve or close failed update pull requests before changing visibility.
 7. Change the verified repository to public, enable branch protection, and run the public-only CodeQL workflow.
-8. Tag `v0.1.0-alpha.0` only after the required checks and CodeQL analysis pass.
+8. Tag the intended prerelease version only after the required checks and CodeQL analysis pass.
+
+Never move or overwrite a published tag. Ship follow-up fixes under a new prerelease version, such as `v0.1.0-alpha.1`.
 
 Keep the private repository and its history private. The source archive and its checksum are the handoff boundary; do not copy `.git` objects or use a mirror push.
 
