@@ -1,5 +1,7 @@
 # ERD Studio
 
+[**English**](README.md) | [한국어](README.ko.md)
+
 ERD Studio is a local-first visual database design tool. Paste MySQL or PostgreSQL DDL, inspect and edit the resulting ER diagram, safely merge incremental DDL, and export the model as SQL, DBML, Mermaid, PNG, or JSON.
 
 > `0.1.0-alpha`: suitable for evaluation and small self-hosted deployments. Back up important work and review generated DDL before applying it to a database.
