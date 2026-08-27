@@ -2,6 +2,18 @@
 
 All notable changes will be documented in this file. The project follows Semantic Versioning once stable API guarantees are introduced.
 
+## 0.1.0-alpha.1 — 2026-08-27
+
+### Security
+
+- Patched the High-severity transitive vulnerabilities in `brace-expansion`, `nanoid`, and `fast-uri`.
+- Preserved High/Critical dependency audits, Gitleaks, and CodeQL as required release gates.
+
+### Changed
+
+- Updated the server dependency group, including Fastify and the OpenAI Codex SDK.
+- Updated the client dependency group, including React, Playwright, axe-core, ESLint, and Vitest.
+
 ## 0.1.0-alpha.0 — 2026-08-01
 
 ### Added

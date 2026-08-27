@@ -1,7 +1,7 @@
 {
   "name": "client",
   "private": true,
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Local-first ERD editor with DDL import, smart merge, and multi-format export",
   "license": "Apache-2.0",
   "type": "module",

@@ -1,7 +1,7 @@
 {
   "name": "erd-server",
   "private": true,
-  "version": "0.1.0-alpha.0",
+  "version": "0.1.0-alpha.1",
   "description": "Optional Fastify and SQLite collaboration server for ERD Studio",
   "license": "Apache-2.0",
   "type": "module",
