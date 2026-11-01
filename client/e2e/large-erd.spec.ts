@@ -52,6 +52,7 @@ test("realistic large ERD remains navigable, accessible, and local-only offline"
   }))).toEqual({ token: null, role: null });
 
   await importMarketplace(page);
+  await expect(page.getByRole("button", { name: "Editing — switch to read-only mode", exact: true })).toHaveText("Editing");
   expect(await page.locator('button[tabindex="-1"]').count()).toBe(0);
   expect(await page.evaluate(() => document.body.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
   await page.screenshot({

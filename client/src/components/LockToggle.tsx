@@ -65,7 +65,7 @@ export function LockToggle() {
       <button
         type="button"
         onClick={() => void handleLock()}
-        aria-label="Switch to read-only mode"
+        aria-label={`${label} — switch to read-only mode`}
         title={title}
       >
         {label}
@@ -78,7 +78,7 @@ export function LockToggle() {
       <button
         type="button"
         onClick={() => setShowPwd(true)}
-        aria-label="Unlock for editing"
+        aria-label="Read only — unlock for editing"
         title="Read-only — click to unlock"
       >
         Read only

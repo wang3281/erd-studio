@@ -16,6 +16,17 @@ function renderToolbar(overrides = {}): string {
 }
 
 describe("Toolbar accessibility", () => {
+  it.each([
+    [{ isEditor: false, isAdmin: false }, "Read only", "unlock for editing"],
+    [{ isEditor: true, isAdmin: false }, "Editing", "switch to read-only mode"],
+    [{ isEditor: true, isAdmin: true }, "Admin", "switch to read-only mode"],
+  ])("includes the visible lock status and action in its accessible name: %s", (state, label, action) => {
+    const html = renderToolbar(state);
+
+    expect(html).toContain(`aria-label="${label} — ${action}"`);
+    expect(html).toContain(`>${label}</button>`);
+  });
+
   it("exposes toggle state without marking ordinary action buttons as toggles", () => {
     const html = renderToolbar();
 
