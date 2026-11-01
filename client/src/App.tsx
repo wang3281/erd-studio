@@ -13,6 +13,8 @@ import { Toast, type ToastTone } from "./components/Toast";
 import { WelcomeOverlay } from "./components/WelcomeOverlay";
 import { ShortcutsPanel } from "./components/ShortcutsPanel";
 import { EntityNavigator } from "./components/EntityNavigator";
+import { DraftRestoreBanner } from "./components/DraftRestoreBanner";
+import { useBrowserDraft } from "./hooks/useBrowserDraft";
 import { saveProject, StorageAuthError, StorageConflictError } from "./core/storage/index";
 import { getSessionGeneration, getSessionInfo } from "./core/auth/index";
 import { createViewportCenteredOn } from "./canvas/viewport";
@@ -119,6 +121,10 @@ function AppInner() {
   const [showEntityNavigator, setShowEntityNavigator] = useState(false);
   const [showWelcome, setShowWelcome] = useState(() => !isWelcomeDismissed());
   const schemaRef = useRef(state.schema);
+  const browserDraft = useBrowserDraft(state, dispatch);
+  const offlineSaveMessage = state.persistence.browserDraftAvailable === false
+    ? "Local draft — export JSON to keep your work"
+    : "Server offline — changes are kept in this browser; export JSON for a file";
 
   const showToast = useCallback((message: string, tone: ToastTone = "info") => {
     setToast({ id: Date.now(), message, tone });
@@ -130,7 +136,7 @@ function AppInner() {
       return;
     }
     if (state.persistence.serverReachable !== true) {
-      showToast("Local draft — export JSON to keep your work", "info");
+      showToast(offlineSaveMessage, "info");
       return;
     }
     if (!state.persistence.hasPersistedProject) {
@@ -156,6 +162,7 @@ function AppInner() {
     dispatch,
     showToast,
     state.isEditor,
+    offlineSaveMessage,
     state.persistence.hasPersistedProject,
     state.persistence.serverReachable,
     state.schema,
@@ -167,7 +174,7 @@ function AppInner() {
       return;
     }
     if (state.persistence.serverReachable !== true) {
-      showToast("Local draft — export JSON to keep your work", "info");
+      showToast(offlineSaveMessage, "info");
       return;
     }
     dispatch({ type: "SET_SAVE_STATE", saveState: "saving" });
@@ -188,7 +195,7 @@ function AppInner() {
         showToast("Save failed", "info");
       }
     }
-  }, [dispatch, showToast, state.isEditor, state.persistence.serverReachable, state.schema]);
+  }, [dispatch, offlineSaveMessage, showToast, state.isEditor, state.persistence.serverReachable, state.schema]);
 
   const openSaveAsDialog = useCallback(() => {
     setSaveAsName(state.schema.name);
@@ -365,6 +372,13 @@ function AppInner() {
         onSaveAs={openSaveAsDialog}
         onOpenNavigator={() => setShowEntityNavigator(true)}
       />
+      {browserDraft.offer.status === "offer" && (
+        <DraftRestoreBanner
+          draft={browserDraft.offer.draft}
+          onRestore={browserDraft.restore}
+          onDiscard={browserDraft.discard}
+        />
+      )}
       <div className="main-area">
         <div className="canvas-container">
           <CanvasView />

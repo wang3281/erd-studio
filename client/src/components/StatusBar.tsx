@@ -5,7 +5,9 @@ export function StatusBar() {
   const persistenceLabel = state.persistence.serverReachable === null
     ? "Checking server…"
     : state.persistence.serverReachable === false
-      ? "Local draft — Export JSON to keep"
+      ? state.persistence.browserDraftAvailable === false
+        ? "Local draft — Export JSON to keep"
+        : "Local draft — kept in this browser"
       : state.persistence.saveState === "saving"
         ? "Saving…"
         : state.persistence.saveState === "error"

@@ -29,6 +29,8 @@ export interface AppState {
     dirty: boolean;
     hasPersistedProject: boolean;
     saveState: SaveState;
+    /** Whether unsaved changes can be backed up in this browser (null until first attempt). */
+    browserDraftAvailable: boolean | null;
   };
   ui: {
     showDDLModal: boolean;
@@ -69,6 +71,8 @@ export type Action =
   | { type: "TOGGLE_INFERRED_RELATIONS" }
   | { type: "SET_SCHEMA_NAME"; name: string }
   | { type: "LOAD_SCHEMA"; schema: ERDSchema }
+  | { type: "RESTORE_DRAFT"; schema: ERDSchema }
+  | { type: "SET_BROWSER_DRAFT_AVAILABLE"; available: boolean }
   | { type: "AUTO_LAYOUT" }
   | { type: "SET_THEME"; theme: Theme }
   | { type: "TOGGLE_AI_MODAL" }

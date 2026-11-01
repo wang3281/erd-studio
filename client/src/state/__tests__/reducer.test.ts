@@ -282,6 +282,7 @@ describe("reducer", () => {
       dirty: false,
       hasPersistedProject: false,
       saveState: "idle",
+      browserDraftAvailable: null,
     });
 
     const edited = reducer(initial, {
@@ -380,5 +381,32 @@ describe("reducer", () => {
     });
 
     expect(historyReducer(selected, { type: "UNDO" }).selection).toEqual({ type: "none" });
+  });
+
+  it("RESTORE_DRAFT restores unsaved work as a dirty new draft with fresh history", () => {
+    const historyReducer = withHistory(reducer);
+    const base = historyReducer(createInitialState(), { type: "ADD_ENTITY", entity: createEntity({ name: "tmp" }) });
+    const saved = historyReducer(base, { type: "MARK_SAVED" });
+    const users = createEntity({ name: "users" });
+    const restored = historyReducer(saved, {
+      type: "RESTORE_DRAFT",
+      schema: { version: 1, name: "shop", entities: [users], relations: [], viewport: { x: 5, y: 6, zoom: 0.5 } },
+    });
+
+    expect(restored.schema.name).toBe("shop");
+    expect(restored.schema.entities.map((entity) => entity.name)).toEqual(["users"]);
+    expect(restored.viewport).toEqual({ offsetX: 5, offsetY: 6, zoom: 0.5 });
+    expect(restored.persistence).toMatchObject({ dirty: true, hasPersistedProject: false, saveState: "idle" });
+    expect(restored.history).toEqual([]);
+    expect(restored.future).toEqual([]);
+  });
+
+  it("SET_BROWSER_DRAFT_AVAILABLE records storage availability without dirtying", () => {
+    const state = createInitialState();
+    expect(state.persistence.browserDraftAvailable).toBeNull();
+    const next = reducer(state, { type: "SET_BROWSER_DRAFT_AVAILABLE", available: false });
+    expect(next.persistence.browserDraftAvailable).toBe(false);
+    expect(next.persistence.dirty).toBe(false);
+    expect(reducer(next, { type: "SET_BROWSER_DRAFT_AVAILABLE", available: false })).toBe(next);
   });
 });
