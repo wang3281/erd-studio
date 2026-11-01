@@ -31,7 +31,7 @@ npm ci
 npm run dev
 ```
 
-Open `http://localhost:5173`. Without the server, editing/import/export works locally. The status bar shows `Local draft — Export JSON to keep`; server Open/Save and autosave stay disabled.
+Open `http://localhost:5173`. Without the server, editing/import/export works locally. The status bar shows `Local draft — kept in this browser`; server Open/Save and autosave stay disabled.
 
 To enable shared projects:
 
@@ -79,6 +79,7 @@ CI runs these checks on Node.js 20 and 22 and also runs CodeQL, secret scanning,
 - Shared editor/admin passwords are instance-wide; per-user project ACLs are not included.
 - DDL parsing targets common MySQL/PostgreSQL forms, not every vendor extension or procedural statement.
 - Smart Merge is partial by design and never deletes tables omitted from the incoming DDL. Use Replace for a full replacement.
-- Local drafts are in-memory until exported. Server autosave begins only after the project has been saved or opened once.
+- Changes not yet saved to the server are backed up in this browser's IndexedDB (one draft slot) and offered for restore on the next visit; the backup is cleared after a successful server save. Export JSON to keep a portable copy. Server autosave begins only after the project has been saved or opened once.
+- A restored draft opens as a new draft; use Save As to store it on the server. If several tabs edit at once, the last write wins the browser backup.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md), [CHANGELOG.md](CHANGELOG.md), and the [Apache-2.0 license](LICENSE).

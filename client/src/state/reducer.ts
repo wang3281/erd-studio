@@ -40,6 +40,7 @@ export function createInitialState(): AppState {
       dirty: false,
       hasPersistedProject: false,
       saveState: "idle",
+      browserDraftAvailable: null,
     },
     ui: { showDDLModal: false, showProjectList: false, showInferredRelations: false, showAIModal: false, showAISettingsModal: false },
     aiInference: { status: "idle" },
@@ -300,6 +301,31 @@ function reduceCore(state: AppState, action: Action): AppState {
           hasPersistedProject: true,
           saveState: "saved",
         },
+      };
+
+    case "RESTORE_DRAFT":
+      // A restored draft is unsaved work: keep it dirty and require Save As,
+      // because the server version it was based on is unknown after reload.
+      return {
+        ...state,
+        schema: recalcAllEntities(action.schema),
+        viewport: { offsetX: action.schema.viewport.x, offsetY: action.schema.viewport.y, zoom: action.schema.viewport.zoom },
+        selection: { type: "none" },
+        mode: "select",
+        addRelationState: null,
+        persistence: {
+          ...state.persistence,
+          dirty: true,
+          hasPersistedProject: false,
+          saveState: "idle",
+        },
+      };
+
+    case "SET_BROWSER_DRAFT_AVAILABLE":
+      if (state.persistence.browserDraftAvailable === action.available) return state;
+      return {
+        ...state,
+        persistence: { ...state.persistence, browserDraftAvailable: action.available },
       };
 
     case "AUTO_LAYOUT":

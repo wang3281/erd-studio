@@ -2,6 +2,16 @@
 
 All notable changes will be documented in this file. The project follows Semantic Versioning once stable API guarantees are introduced.
 
+## Unreleased
+
+### Added
+
+- Back up changes that have not been saved to the server in the browser's IndexedDB, and offer to restore or discard them on the next visit. The backup is cleared after a successful server save.
+
+### Changed
+
+- The offline status bar now reads `Local draft — kept in this browser` when browser storage is available.
+
 ## 0.1.0-alpha.1 — 2026-08-27
 
 ### Security

@@ -24,5 +24,5 @@ Treat ERD schemas and AI prompts as sensitive data. Terminate TLS at a trusted r
 
 - Shared editor/admin passwords are instance-wide; this release has no per-user project ACL or audit attribution for editor actions.
 - The supported topology is one Fastify process with one SQLite database. Horizontal scaling requires an external session and data store and is not supported.
-- Local/offline drafts remain in browser memory until exported as JSON.
+- Changes not yet saved to the server, including local/offline drafts, are backed up unencrypted in the browser's IndexedDB for this origin until a server save succeeds or the user discards them. On shared machines, discard the draft or clear site data when finished.
 - The release lockfile resolves Vite 7.3.6 and patched `esbuild@0.28.1`. Development servers are still local tooling and must not be exposed to untrusted networks. Release CI audits the complete dependency trees.

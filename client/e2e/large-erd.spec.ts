@@ -45,7 +45,7 @@ test("realistic large ERD remains navigable, accessible, and local-only offline"
   });
 
   await page.goto("/");
-  await expect(page.getByRole("status")).toContainText("Local draft — Export JSON to keep");
+  await expect(page.getByRole("status")).toContainText("Local draft — kept in this browser");
   expect(await page.evaluate(() => ({
     token: localStorage.getItem("erd-edit-token"),
     role: localStorage.getItem("erd-edit-role"),

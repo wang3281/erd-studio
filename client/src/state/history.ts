@@ -84,7 +84,7 @@ export function withHistory(
       return { ...newState, future: [] };
     }
 
-    if (action.type === "LOAD_SCHEMA") {
+    if (action.type === "LOAD_SCHEMA" || action.type === "RESTORE_DRAFT") {
       return {
         ...newState,
         history: [],
